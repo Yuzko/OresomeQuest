@@ -21,14 +21,6 @@ public class globalListener implements Listener{
 	
 	
 	
-	
-	@EventHandler(priority =  EventPriority.NORMAL)
-	public void kill(EntityDeathEvent event){
-		Entity dead = event.getEntity();
-		Entity killer = dead.getLastDamageCause().getEntity();
-		
-
-	}
 
 	@EventHandler(priority =  EventPriority.NORMAL)
 	public void join(PlayerJoinEvent event){

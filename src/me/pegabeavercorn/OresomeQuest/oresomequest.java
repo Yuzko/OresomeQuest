@@ -23,6 +23,7 @@ public class oresomequest extends JavaPlugin {
 		gL = new globalListener(this);
 		
 		getServer().getPluginManager().registerEvents(gL, this); 
+		LevelUpEvent lvlUp = new LevelUpEvent(1);
 		
 		  PluginDescriptionFile pdfFile = getDescription();
 		    this.logger.info(pdfFile.getName() + " version " + pdfFile.getVersion() + "is now enabled");
