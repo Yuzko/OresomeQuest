@@ -1,26 +1,65 @@
-package me.pegabeavercorn.OresomeQuest;
+package me.yuzko.quest;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 
-public class LevelUpListener implements Listener {
+public class LevelUpEvent extends Event
+{
+	public static final HandlerList handlers = new HandlerList();
+	private Player player;
+	int level = 0;
 
-	oresomequest plugin;
-	
-	public LevelUpListener(oresomequest pl){
-		plugin = pl;}
-	
-	@EventHandler(priority =  EventPriority.NORMAL)
-	public void join(PlayerJoinEvent event){
-		Player p = event.getPlayer();
-		
-	 LevelUpEvent lvlUp = new LevelUpEvent(p);
-	 Bukkit.getServer().getPluginManager().callEvent(lvlUp);
-	 
+	Quest plugin;
+
+
+	public LevelUpEvent(Quest pl)
+	{
+	plugin = pl;
 	}
-	
+
+	public LevelUpEvent(Player p)
+	{
+	player = p;
+	}
+
+	public LevelUpEvent(int i) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Player getPlayer()
+	{
+		return player;
+	}
+
+	public int getLevel()
+	{
+		String name = player.getName();
+		if(plugin.pl.getConfig().get(name) != null)
+		{
+			if(plugin.pl.getConfig().get(name + ".Level") != null)
+			{
+				int level = plugin.pl.getConfig().getInt(name + ".Level");
+				return level;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	public HandlerList getHandlers()
+	{
+		return handlers;
+	}
+
+	public static HandlerList getHandlerList()
+	{
+		return handlers;
+	}
 }
